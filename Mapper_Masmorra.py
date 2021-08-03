@@ -17,6 +17,7 @@ bg2.y = 600
 
 over = Sprite("mouse_over.png")
 selected = Sprite("assets/tiles/chao0.png")
+selected_id = 0
 
 new_map = Map(13, 17)
 menu = Menu()
@@ -30,6 +31,7 @@ while(not keyboard.key_pressed("ESC")):
     for i in range(len(menu.get_canvas())):
         if(mouse.is_over_object(menu.get_canvas()[i]) and mouse.is_button_pressed(1)):
             selected = copy.copy(menu.get_canvas()[i])
+            selected_id = i
     
     """Seleciona um dos botões do menu"""
     for i in range(len(menu.get_buttons())):
@@ -37,13 +39,13 @@ while(not keyboard.key_pressed("ESC")):
             if(i == 0):
                 new_map.clear()
             if(i == 1):
-                new_map.save("teste.txt")
+                new_map.save("maps/teste.txt")
 
     """Salva no mapa o tile desejado"""
     for i in range(new_map.get_line_len()):
         for j in range(new_map.get_column_len()):
             if(mouse.is_over_object(new_map.get_tile(i, j)) and mouse.is_button_pressed(1)):
-                new_map.set_tile(copy.copy(selected), i, j)                
+                new_map.set_tile(copy.copy(selected), selected_id, i, j)                
 
     # Draw dos Game Objects
     """Draw das partes do mapa (y < 600)"""

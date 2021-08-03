@@ -7,7 +7,7 @@ class Map(object):
     """
     #--------------------Atributos--------------------
     _map = []
-    _map_save = []
+    _map_save = []                # Lista que guarda os códigos de cada tile em sua posição para ser salvo
     _lines = 0
     _columns = 0
 
@@ -20,7 +20,7 @@ class Map(object):
             self._map_save.append([])
             for j in range(columns):
                 self._map[i].append(Sprite("null.png"))
-                self.map[i].append(''))
+                self._map_save[i].append(-1)
         self.position_tiles()
    
     """Retorna o número de linhas da matriz-mapa"""
@@ -36,8 +36,9 @@ class Map(object):
         return self._map[line][column]
 
     """Muda o Sprite da matriz-mapa"""
-    def set_tile(self, sprite, line, column):
+    def set_tile(self, sprite, tileId, line, column):
         self._map[line][column] = sprite
+        self._map_save[line][column] = tileId
 
     """Posiciona as Sprites de cada elemento da matriz-mapa"""
     def position_tiles(self):
@@ -64,4 +65,5 @@ class Map(object):
         file = open(name, 'w')
         for i in range(self._lines):
             for j in range(self._columns):
-                file.write(self._map_save[i][j] + '\n')
+                curr = str(self._map_save[i][j])
+                file.write(curr + '\n')
