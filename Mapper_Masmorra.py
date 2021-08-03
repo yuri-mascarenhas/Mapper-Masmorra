@@ -26,10 +26,20 @@ while(not keyboard.key_pressed("ESC")):
     # Entrada de dados
     
     # Update dos Game Objects
+    """Seleciona qual tile será utilizado"""
     for i in range(len(menu.get_canvas())):
         if(mouse.is_over_object(menu.get_canvas()[i]) and mouse.is_button_pressed(1)):
             selected = copy.copy(menu.get_canvas()[i])
+    
+    """Seleciona um dos botões do menu"""
+    for i in range(len(menu.get_buttons())):
+        if(mouse.is_over_object(menu.get_buttons()[i]) and mouse.is_button_pressed(1)):
+            if(i == 0):
+                new_map.clear()
+            if(i == 1):
+                new_map.save("teste.txt")
 
+    """Salva no mapa o tile desejado"""
     for i in range(new_map.get_line_len()):
         for j in range(new_map.get_column_len()):
             if(mouse.is_over_object(new_map.get_tile(i, j)) and mouse.is_button_pressed(1)):

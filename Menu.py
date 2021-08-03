@@ -13,7 +13,7 @@ class Menu(object):
     
     #--------------------Métodos--------------------
     def __init__(self):
-        self._buttons = [Sprite("assets/buttons/clear.png"), 
+        self._buttons = [Sprite("assets/buttons/clear.png"),        
                          Sprite("assets/buttons/save.png")]
         self._canvas = [Sprite("assets/tiles/chao0.png"),
                         Sprite("assets/tiles/paredeCID.png"),
@@ -33,8 +33,12 @@ class Menu(object):
     def get_canvas(self):
         return self._canvas
 
+    """Retorna a lista que contém os botões"""
+    def get_buttons(self):
+        return self._buttons
+
     def draw(self):
-        for i in range(len(self._buttons)):
-            self._buttons[i].draw()
-        for i in range(len(self._canvas)):
-            self._canvas[i].draw()
+        for spr in self._buttons:
+            spr.draw()
+        for spr in self._canvas:
+            spr.draw()

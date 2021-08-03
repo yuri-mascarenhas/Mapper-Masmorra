@@ -7,6 +7,7 @@ class Map(object):
     """
     #--------------------Atributos--------------------
     _map = []
+    _map_save = []
     _lines = 0
     _columns = 0
 
@@ -16,20 +17,25 @@ class Map(object):
         self._columns = columns
         for i in range(lines):
             self._map.append([])
+            self._map_save.append([])
             for j in range(columns):
                 self._map[i].append(Sprite("null.png"))
+                self.map[i].append(''))
         self.position_tiles()
    
-    """Getters e Setters"""
+    """Retorna o número de linhas da matriz-mapa"""
     def get_line_len(self):
         return self._lines
 
+    """Retorna o número de colunas da matriz-mapa"""
     def get_column_len(self):
         return self._columns
 
+    """Retorna o Sprite de uma posição expecífica da matriz-mapa"""
     def get_tile(self, line, column):
         return self._map[line][column]
 
+    """Muda o Sprite da matriz-mapa"""
     def set_tile(self, sprite, line, column):
         self._map[line][column] = sprite
 
@@ -44,9 +50,18 @@ class Map(object):
         for i in range(self._lines):
             for j in range(self._columns):
                 self._map[i][j].draw()
+    
+    """Limpa todos os elementro da matriz"""
+    def clear(self):
+        for i in range(self._lines):
+            for j in range(self._columns):
+                self._map[i][j] = Sprite("null.png")
+                self._map_save[i][j] = ''
+        self.position_tiles()
 
-    def save_map(self, name):
+    """Salva a matriz-mapa num arquivo com o nome especificado"""
+    def save(self, name):
         file = open(name, 'w')
         for i in range(self._lines):
             for j in range(self._columns):
-                file.write(self._map[i][j] + '\n')
+                file.write(self._map_save[i][j] + '\n')
