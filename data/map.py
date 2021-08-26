@@ -78,6 +78,6 @@ class Map(object):
             for x in range(self.lines):
                 for y in range(self.columns):
                     curr = str(self._map_save[z][x][y])
-                    file.write(curr)
+                    file.write(curr + " ")
                 file.write("\n")
             if(z < self.layers - 1): file.write("-\n")

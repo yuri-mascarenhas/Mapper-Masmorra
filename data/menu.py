@@ -22,15 +22,15 @@ class Menu(object):
         self._background = GameImage(default_background)
         self._background.y = 600
 
-        for i in range(len(tileset)): self.canvas.append(copy(tileset[i]))
-
+        for i in range(len(tileset)): 
+            self.canvas.append(copy(tileset[i]))
         for i in range(len(self._buttons)):
             self._buttons[i].x = 736
             self._buttons[i].y = 616 + (i * 36)
-        for i in range(0, len(self.canvas), 2):
-            for j in range(2):
+        for i in range(0, len(self.canvas), 3):
+            for j in range(3):
                 if(i + j < len(self.canvas)):
-                    self.canvas[i + j].x = 16 + (i * 32)
+                    self.canvas[i + j].x = 16 + ((i / 3) * 64)
                     self.canvas[i + j].y = 616 + (j * 64)
 
     """Retorna o número de botões do Menu"""
